@@ -1,16 +1,20 @@
 {
     "folders": [
         {
-            "name": "config (/etc/ansible)",
+            "name": "playbooks (/home/ansible/playbooks)",
+            "path": "."
+        },
+        {
+            "name": "global roles (/home/ansible/global-roles)",
+            "path": "/home/ansible/global-roles"
+        },
+        {
+            "name": "ansible config (/etc/ansible)",
             "path": "/etc/ansible"
         },
         {
-            "name": "ssh (/home/ansible/.ssh)",
+            "name": "user ssh (/home/ansible/.ssh)",
             "path": "/home/ansible/.ssh"
-        },
-        {
-            "name": "playbooks (/home/ansible/playbooks)",
-            "path": "."
         }
     ],
     "settings": {
