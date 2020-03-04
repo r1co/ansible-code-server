@@ -5,7 +5,15 @@ USER root
 # install ansible
 RUN apt update && apt install -y  software-properties-common openssh-client ca-certificates
 RUN apt-add-repository --yes --update ppa:ansible/ansible
-RUN apt update && apt install -y ansible curl wget nano && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y \
+        ansible \
+        curl \
+        wget \
+        nano \
+        dnsutils \
+        cron \
+        supervisor \
+    && rm -rf /var/lib/apt/lists/*
 
 # setup entrypoint
 ADD run.sh /usr/bin/run
@@ -20,8 +28,11 @@ RUN mkdir -p .vscode-data .ssh playbooks global-roles
 ADD ansible-workspace.code-workspace /home/ansible/playbooks/ansible.code-workspace
 RUN chown -R ansible:ansible /home/ansible /etc/ansible/
 
+# setup supervisord
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+
 # set user
-USER ansible
 WORKDIR /home/ansible/playbooks/
 
 # volumes
